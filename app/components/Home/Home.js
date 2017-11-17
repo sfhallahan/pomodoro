@@ -31,7 +31,7 @@ export default function Home (props) {
         leftButton={Platform.OS === 'android' ? <Hamburger onPress={props.openDrawer} /> : null}
         rightButton={<Gear onPress={() => navigate('Settings')} />} />
 
-      <Score count={95}/>
+      <Score count={props.score}/>
       <Countdown formattedTime={props[props.activeCountdown]} />
       <ProgressBar style={{marginLeft: 20, marginRight: 20}} progress={props.progress} />
       <View style={styles.footer}>

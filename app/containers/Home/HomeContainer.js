@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { View, Text } from 'react-native'
 import { Home } from '../../components'
 import { connect } from 'react-redux'
+import { incrementAndHandleScore, decrementAndHandleScore } from '../../redux/modules/scores'
 
 function secondsToHMS(secs) {
   const hours = Math.floor(secs / 3600)
@@ -17,6 +18,8 @@ class HomeContainer extends Component {
     navigation: PropTypes.object.isRequired,
     timerDuration: PropTypes.number.isRequired,
     restDuration: PropTypes.number.isRequired,
+    score: PropTypes.number.isRequired,
+    scoringIsActive: PropTypes.bool.isRequired,
   }
   state = {
     timer: this.props.timerDuration,
@@ -42,6 +45,7 @@ class HomeContainer extends Component {
   handleToggleCountdown = () => {
     if (this.state.countdownRunning === true) {
       this.setState({countdownRunning: false})
+      this.calculateNegativeScoreAdjustments()
       return window.clearInterval(this.interval)
     }
 
@@ -56,10 +60,16 @@ class HomeContainer extends Component {
           [activeCountdown]: this.state.activeCountdown === 'timer' ? this.props.timerDuration : this.props.restDuration,
           activeCountdown: this.state.activeCountdown === 'timer' ? 'rest' : 'timer'
         })
+
+        this.calculatePositiveScoreAdjustments(true)
       } else {
         this.setState({
           [activeCountdown]: nextSecond,
         })
+      }
+
+      if (nextSecond % 60 === 0) {
+        this.calculatePositiveScoreAdjustments(false)
       }
     }, 1000)
   }
@@ -70,6 +80,7 @@ class HomeContainer extends Component {
       timer: this.props.timerDuration,
       countdownRunning: false,
     })
+    this.calculateNegativeScoreAdjustments()
   }
 
   handleSkipRest = () => {
@@ -85,6 +96,27 @@ class HomeContainer extends Component {
       : 1 - (this.state.rest / this.props.restDuration)
   }
 
+  calculateNegativeScoreAdjustments = () => {
+    const timeElapsed = this.props.timerDuration - this.state.timer
+    if (!this.props.scoringIsActive || timeElapsed < 15) {
+      return
+    }
+    this.props.dispatch(decrementAndHandleScore(5))
+  }
+
+  calculatePositiveScoreAdjustments = (isRoundComplete) => {
+    if (!this.props.scoringIsActive) {
+      return
+    }
+    if (isRoundComplete) {
+      this.props.dispatch(incrementAndHandleScore(this.props.timerDuration/60))
+    } else {
+      const scoreMultiplier = Math.floor(this.state.timer/60/10) + 1
+      this.props.dispatch(incrementAndHandleScore(scoreMultiplier * 1))
+    }
+  }
+
+
   render () {
     return (
       <Home
@@ -98,18 +130,30 @@ class HomeContainer extends Component {
         onToggleCountdown={this.handleToggleCountdown}
         countdownRunning={this.state.countdownRunning}
         progress={this.getProgress()}
+        score={this.props.score}
         />
     )
   }
 }
 
-function mapStateToProps({settings}) {
+function mapStateToProps({settings, scores, authentication}) {
   return {
     timerDuration: settings.timerDuration * 60,
     restDuration: settings.restDuration * 60,
+    score: scores.usersScores[authentication.authedId],
+    scoringIsActive: scores.scoringIsActive,
   }
 }
 
 export default connect(
   mapStateToProps,
 )(HomeContainer)
+
+
+/**
+  * Scoring rules:
+  * 1 point/minute completed
+  * Multipler for every 10 minutes consecutive (X2 for 10-20, X3 20-30)
+  * Bonus points = length of the round for round completed.
+  * 15 second
+  */
