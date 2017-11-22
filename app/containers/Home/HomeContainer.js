@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { View, Text } from 'react-native'
+import Icon from 'react-native-vector-icons/Ionicons'
 import { Home } from '../../components'
 import { connect } from 'react-redux'
 import { incrementAndHandleScore, decrementAndHandleScore } from '../../redux/modules/scores'
@@ -26,6 +27,10 @@ class HomeContainer extends Component {
     rest: this.props.restDuration,
     activeCountdown: 'timer',
     countdownRunning: false,
+  }
+  static navigationOptions = {
+    tabBarLabel: 'Home',
+    tabBarIcon: ({tintColor}) => <Icon size={30} name={'ios-home-outline'} color={tintColor} />
   }
 
   componentWillReceiveProps (nextProps) {

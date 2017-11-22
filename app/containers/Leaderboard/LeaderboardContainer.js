@@ -4,12 +4,18 @@ import { ListView } from 'react-native'
 import { Leaderboard, Leader } from '../../components'
 import { connect } from 'react-redux'
 import { fetchAndSetScoresListener } from '../../redux/modules/scores'
+import Icon from 'react-native-vector-icons/Ionicons'
 
 class LeaderboardContainer extends Component {
   static propTypes = {
     openDrawer: PropTypes.func,
     listenerSet: PropTypes.bool.isRequired,
     leaders: PropTypes.array.isRequired,
+  }
+
+  static navigationOptions = {
+      tabBarLabel: 'Leaderboard',
+      tabBarIcon: ({tintColor}) => <Icon size={30} name={'ios-trophy-outline'} color={tintColor} />
   }
 
   constructor(props) {
