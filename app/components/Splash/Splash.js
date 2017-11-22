@@ -2,11 +2,13 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { View, StyleSheet, Text, Image, Dimensions } from 'react-native'
 import { LoginButton } from 'react-native-fbsdk'
+import { GoogleSigninButton } from 'react-native-google-signin'
 import { colors, fontSizes } from '../../styles'
 const { height } = Dimensions.get('window')
 
 Splash.propTypes = {
-  onLoginFinished: PropTypes.func.isRequired,
+  onFacebookLoginFinished: PropTypes.func.isRequired,
+  onGoogleLogin: PropTypes.func.isRequired,
 }
 
 export default function Splash (props) {
@@ -17,12 +19,11 @@ export default function Splash (props) {
         <Text style={styles.slogan}>ReactModoro</Text>
       </View>
       <View style={styles.loginContainer}>
+        <GoogleSigninButton
+          style={{height: 35, width: 185, marginBottom:10, justifyContent: 'flex-start', }}
+          onPress={props.onGoogleLogin}/>
         <LoginButton
-          style={{
-            height: 30,
-            width: 180,
-            marginBottom: 15,
-          }}
+          style={{ height: 30, width: 180, marginBottom: 15,}}
           onLoginFinished={props.onLoginFinished} />
         <Text style={styles.assuranceText}>
           {`Don't worry, we don't post anthing to facebook`}
