@@ -25,7 +25,7 @@ export default function ProgressBar (props) {
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    height: 20,
+    height: 10,
     borderRadius: 4,
     borderWidth: 1,
     borderColor: '#fff',

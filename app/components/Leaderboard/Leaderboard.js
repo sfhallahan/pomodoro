@@ -15,9 +15,6 @@ Leaderboard.propTypes = {
 export default function Leaderboard (props) {
   return (
     <View style={styles.container}>
-      <ReactModoroNavbar
-        title='Leaderboard'
-        leftButton={Platform.OS === 'android' ? <Hamburger onPress={props.openDrawer} /> : null} />
       {props.listenerSet === false
         ? <ActivityIndicator size='small' style={styles.activityIndicator} color={colors.secondary} />
         : <ListView renderRow={props.renderRow} dataSource={props.dataSource} />}

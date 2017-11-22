@@ -26,11 +26,6 @@ export default function Home (props) {
   const { navigate } = props.navigation
   return (
     <View style={[styles.container, {backgroundColor: props.activeCountdown === 'timer' ? colors.blue : colors.red}]}>
-      <ReactModoroNavbar
-        title='Home'
-        leftButton={Platform.OS === 'android' ? <Hamburger onPress={props.openDrawer} /> : null}
-        rightButton={<Gear onPress={() => navigate('Settings')} />} />
-
       <Score count={props.score}/>
       <Countdown formattedTime={props[props.activeCountdown]} />
       <ProgressBar style={{marginLeft: 20, marginRight: 20}} progress={props.progress} />
@@ -54,6 +49,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-end',
     alignItems: 'center',
-    marginBottom: 65,
+    marginBottom: 15,
   }
 })

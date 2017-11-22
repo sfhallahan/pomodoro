@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { View } from 'react-native'
+import { View, Text } from 'react-native'
 import { connect } from 'react-redux'
-import { ReactModoroNavigator, SplashContainer } from '../../containers'
+import { TabBarNavigator, SplashContainer } from '../../containers'
 import { PreSplash, FlashNotification } from '../../components'
 import { firebaseAuth } from '../../config/constants'
 import { onAuthChange } from '../../redux/modules/authentication'
@@ -34,7 +34,7 @@ class AppContainer extends Component {
         {this.props.isAuthenticating === true
           ? <PreSplash />
           : this.props.isAuthed === true
-            ? <ReactModoroNavigator />
+            ? <TabBarNavigator />
             : <SplashContainer /> }
         {this.props.showFlashNotification === true
           ? <FlashNotification

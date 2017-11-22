@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { View, Text } from 'react-native'
 import { connect } from 'react-redux'
+import Icon from 'react-native-vector-icons/Ionicons'
 import { Settings } from '../../components'
 import { handleUnauth } from '../../redux/modules/authentication'
 import { showFlashNotification } from '../../redux/modules/flashNotification'
@@ -12,6 +13,10 @@ class SettingsContainer extends Component {
     navigation: PropTypes.object.isRequired,
     timerDuration: PropTypes.number.isRequired,
     restDuration: PropTypes.number.isRequired,
+  }
+  static navigationOptions = {
+    tabBarLabel: 'Settings',
+    tabBarIcon: ({tintColor}) => <Icon size={30} name={'ios-settings-outline'} color={tintColor} />
   }
   state = {
     timerDuration: this.props.timerDuration,
