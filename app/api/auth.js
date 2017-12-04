@@ -11,12 +11,6 @@ export function authWithFacebookToken (accessToken) {
     .signInWithCredential(facebookProvider.credential(accessToken))
 }
 
-export function getGoogleAccessToken() {
-  const accessToken = GoogleSignin.getAccessToken()
-  console.log('Access token is: ', accessToken)
-  return GoogleSignin.getAccessToken()
-}
-
 export function authWithGoogleToken (accessToken) {
   return firebaseAuth
     .signInWithCredential(googleProvider.credential(accessToken))
@@ -29,8 +23,10 @@ export function updateUser (user) {
   ])
 }
 
+// TODO update system to be conscious of signin type
 export function logout () {
   LoginManager.logOut()
+  GoogleSignin.signOut()
   firebaseAuth.signOut()
   ref.off()
 }

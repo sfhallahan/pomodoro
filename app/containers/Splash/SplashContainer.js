@@ -9,10 +9,11 @@ import { handleFacebookAuthWithFirebase, handleGoogleAuthWithFirebase } from '..
 class SplashContainer extends Component {
 
   componentDidMount() {
-    GoogleSignin.hasPlayServices({ autoResolve: true})
-    GoogleSignin.configure({offlineAccess: false})
+    GoogleSignin.hasPlayServices({ autoResolve: true })
+    GoogleSignin.configure({
+      webClientId: '232465234583-v6tujugufdioasu9rp6ojv75vvtuc2bd.apps.googleusercontent.com',
+      offlineAccess: false})
   }
-
 
   handleFacebookLoginFinished = (error, result) => {
     if (error) {
@@ -25,12 +26,10 @@ class SplashContainer extends Component {
   }
 
   handleGoogleLogin = () => {
-    GoogleSignin.configure()
     GoogleSignin.signIn()
-      .then((result) => console.log(result))
-      .catch((error) => console.log(error))
+      .then((result) => this.props.dispatch(handleGoogleAuthWithFirebase(result)))
+      .catch((error) => console.warn(error))
       .done()
-      //this.props.dispatch(handleGoogleAuthWithFirebase())
   }
 
   render () {

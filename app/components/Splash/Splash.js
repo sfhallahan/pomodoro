@@ -24,7 +24,7 @@ export default function Splash (props) {
           onPress={props.onGoogleLogin}/>
         <LoginButton
           style={{ height: 30, width: 180, marginBottom: 15,}}
-          onLoginFinished={props.onLoginFinished} />
+          onLoginFinished={props.onFacebookLoginFinished} />
         <Text style={styles.assuranceText}>
           {`Don't worry, we don't post anthing to facebook`}
         </Text>
