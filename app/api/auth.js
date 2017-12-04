@@ -1,13 +1,19 @@
-import { firebaseAuth, facebookProvider, ref } from '../config/constants'
+import { firebaseAuth, facebookProvider, ref, googleProvider } from '../config/constants'
 import { AccessToken, LoginManager } from 'react-native-fbsdk'
+import { GoogleSignin } from 'react-native-google-signin'
 
-export function getAccessToken() {
+export function getFacebookAccessToken() {
   return AccessToken.getCurrentAccessToken()
 }
 
-export function authWithToken (accessToken) {
+export function authWithFacebookToken (accessToken) {
   return firebaseAuth
     .signInWithCredential(facebookProvider.credential(accessToken))
+}
+
+export function authWithGoogleToken (accessToken) {
+  return firebaseAuth
+    .signInWithCredential(googleProvider.credential(accessToken))
 }
 
 export function updateUser (user) {
@@ -17,8 +23,10 @@ export function updateUser (user) {
   ])
 }
 
+// TODO update system to be conscious of signin type
 export function logout () {
   LoginManager.logOut()
+  GoogleSignin.signOut()
   firebaseAuth.signOut()
   ref.off()
 }

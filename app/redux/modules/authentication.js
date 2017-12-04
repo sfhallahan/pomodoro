@@ -1,4 +1,4 @@
-import { getAccessToken, authWithToken, updateUser, logout } from '../../api/auth'
+import { getFacebookAccessToken, authWithFacebookToken, authWithGoogleToken, updateUser, logout } from '../../api/auth'
 import { fetchSettings } from '../../api/settings'
 import { addSettingsTimerDuration, addSettingsRestDuration } from './settings'
 import { fetchAndHandleScore } from './scores'
@@ -33,12 +33,19 @@ function loggingOut() {
   }
 }
 
-export function handleAuthWithFirebase () {
+export function handleFacebookAuthWithFirebase () {
   return function(dispatch, getState) {
     dispatch(authenticating())
-    return getAccessToken()
-      .then(({accessToken}) => authWithToken(accessToken))
-      .catch((error) => console.warn('Error in handleAuthWithFirebase ', error))
+    return getFacebookAccessToken()
+      .then(({accessToken}) => authWithFacebookToken(accessToken))
+      .catch((error) => console.warn('Error in handleFacebookAuthWithFirebase ', error))
+  }
+}
+export function handleGoogleAuthWithFirebase (result) {
+  return function(dispatch, getState) {
+    dispatch(authenticating())
+    const { idToken } = result
+    authWithGoogleToken(idToken)
   }
 }
 
