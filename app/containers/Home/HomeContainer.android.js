@@ -5,6 +5,8 @@ import Icon from 'react-native-vector-icons/Ionicons'
 import { Home } from '../../components'
 import { connect } from 'react-redux'
 import { incrementAndHandleScore, decrementAndHandleScore } from '../../redux/modules/scores'
+import BackgroundTimer from 'react-native-background-timer'
+import PushNotification from 'react-native-push-notification'
 
 function secondsToHMS(secs) {
   const hours = Math.floor(secs / 3600)
@@ -33,6 +35,14 @@ class HomeContainer extends Component {
     tabBarIcon: ({tintColor}) => <Icon size={30} name={'ios-home-outline'} color={tintColor} />
   }
 
+  componentDidMount() {
+    PushNotification.configure({
+      onNotification: function(notification) {
+        console.log('NOTIFICATION', notification)
+      }
+    })
+  }
+
   componentWillReceiveProps (nextProps) {
     if (this.props.timerDuration !== nextProps.timerDuration) {
       this.setState({
@@ -51,16 +61,27 @@ class HomeContainer extends Component {
     if (this.state.countdownRunning === true) {
       this.setState({countdownRunning: false})
       this.calculateNegativeScoreAdjustments()
-      return window.clearInterval(this.interval)
+      return BackgroundTimer.clearInterval(this.interval)
     }
 
     this.setState({countdownRunning: true})
 
-    this.interval = setInterval(() => {
+    this.interval = BackgroundTimer.setInterval(() => {
       const activeCountdown = this.state.activeCountdown // either timer or rest
       const nextSecond = this.state[activeCountdown] - 1
 
       if (nextSecond === 0) {
+        if (this.state.activeCountdown === 'timer') {
+            PushNotification.localNotification({
+              title: "Work Period Complete",
+              message: `Work period complete. Starting ${this.props.restDuration/60} minute rest period`,
+            })
+        } else {
+           PushNotification.localNotification({
+              title: "Rest Period Complete",
+              message: `Rest period complete. Starting ${this.props.timerDuration/60} minute work period`,
+            })
+        }
         this.setState({
           [activeCountdown]: this.state.activeCountdown === 'timer' ? this.props.timerDuration : this.props.restDuration,
           activeCountdown: this.state.activeCountdown === 'timer' ? 'rest' : 'timer'
@@ -80,7 +101,7 @@ class HomeContainer extends Component {
   }
 
   handleReset = () => {
-    window.clearInterval(this.interval)
+    BackgroundTimer.clearInterval(this.interval)
     this.setState({
       timer: this.props.timerDuration,
       countdownRunning: false,
