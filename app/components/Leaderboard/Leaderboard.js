@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { View, StyleSheet, Text, Platform, ActivityIndicator, ListView } from 'react-native'
 import { ReactModoroNavbar, Hamburger } from '../../components'
-import { colors } from '../../styles'
+import { colors, fontSizes } from '../../styles'
 import  Leader from './Leader'
 
 Leaderboard.propTypes = {
@@ -15,6 +15,7 @@ Leaderboard.propTypes = {
 export default function Leaderboard (props) {
   return (
     <View style={styles.container}>
+      <Text style={styles.leaderboardHeader}>Leaders</Text>
       {props.listenerSet === false
         ? <ActivityIndicator size='small' style={styles.activityIndicator} color={colors.secondary} />
         : <ListView renderRow={props.renderRow} dataSource={props.dataSource} />}
@@ -30,7 +31,13 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: colors.white,
     marginBottom: 50,
-    marginTop: 20,
+    marginTop: 30,
+  },
+  leaderboardHeader: {
+    fontSize: 24,
+    fontWeight: '600',
+    color: colors.primary,
+    textAlign: 'center',
   }
 
 })
