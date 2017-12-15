@@ -21,15 +21,6 @@ const tabBarConfiguration = {
     indicatorStyle: {
       backgroundColor: colors.blue,
     },
-    tabStyle: {
-      height: 60,
-    },
-    labelStyle: {
-      marginTop: 2,
-    },
-    iconStyle: {
-      marginTop: 10,
-    },
     style: {
       backgroundColor: colors.white,
     }

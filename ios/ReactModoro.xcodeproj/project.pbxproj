@@ -34,6 +34,7 @@
 		145D7D3C1FE367A600A47565 /* libRCTPushNotification.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 145D7D391FE3670E00A47565 /* libRCTPushNotification.a */; };
 		145D7DB81FE4426E00A47565 /* libRNBackgroundTimer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 145D7CBE1FE3464700A47565 /* libRNBackgroundTimer.a */; };
 		145D7DBA1FE4705000A47565 /* libRCTFBSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 145D7CBA1FE3464700A47565 /* libRCTFBSDK.a */; };
+		145D7DBC1FE47B4200A47565 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 145D7DBB1FE47B4200A47565 /* GoogleService-Info.plist */; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		1C95E1AA401C45DA86CBFEF3 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BEEAAD6EEB244677B503C8FC /* SimpleLineIcons.ttf */; };
 		260EAAE61C0F4D619D4766E1 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F6213C257237409B8F1AFD93 /* libz.tbd */; };
@@ -407,6 +408,7 @@
 		145D7D301FE3656600A47565 /* GoogleSignIn.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleSignIn.bundle; path = ../../../../google_signin_sdk_4_1_1/GoogleSignIn.bundle; sourceTree = "<group>"; };
 		145D7D331FE3670D00A47565 /* RCTPushNotification.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTPushNotification.xcodeproj; path = "../node_modules/react-native/Libraries/PushNotificationIOS/RCTPushNotification.xcodeproj"; sourceTree = "<group>"; };
 		145D7DAF1FE4424C00A47565 /* RNBackgroundTimer.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNBackgroundTimer.xcodeproj; path = "../node_modules/react-native-background-timer/ios/RNBackgroundTimer.xcodeproj"; sourceTree = "<group>"; };
+		145D7DBB1FE47B4200A47565 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
 		2390CCD887F945E5B0A8825E /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* ReactModoro-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ReactModoro-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -585,6 +587,7 @@
 				145D7CCE1FE34A8E00A47565 /* ReactModoro.entitlements */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
+				145D7DBB1FE47B4200A47565 /* GoogleService-Info.plist */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
@@ -1312,6 +1315,7 @@
 			files = (
 				145D7D311FE3656600A47565 /* GoogleSignIn.bundle in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				145D7DBC1FE47B4200A47565 /* GoogleService-Info.plist in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				9464B54BD72E4AF39207D6BC /* Entypo.ttf in Resources */,
 				B052EAB2F2084593A3E91670 /* EvilIcons.ttf in Resources */,
