@@ -12,7 +12,8 @@ class SplashContainer extends Component {
     GoogleSignin.hasPlayServices({ autoResolve: true })
     GoogleSignin.configure({
       webClientId: '232465234583-v6tujugufdioasu9rp6ojv75vvtuc2bd.apps.googleusercontent.com',
-      offlineAccess: false})
+      offlineAccess: false,
+      iosClientId: '232465234583-59bjsenluppeo8uc0meecp8ekjmduveh.apps.googleusercontent.com'})
   }
 
   handleFacebookLoginFinished = (error, result) => {
