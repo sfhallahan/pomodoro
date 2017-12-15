@@ -23,5 +23,6 @@ const styles = StyleSheet.create({
     color: colors.white,
     fontSize: fontSizes.secondary,
     textAlign: 'right',
+    backgroundColor: 'transparent',
   }
 })

@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { View, Text, Platform, TouchableOpacity, StyleSheet } from 'react-native'
+import { View, Text, Platform, TouchableOpacity, StyleSheet, Image } from 'react-native'
 import { ReactModoroNavbar, Gear, Hamburger } from '../../components'
 import { colors } from '../../styles'
 import Score from './Score'
@@ -25,7 +25,10 @@ Home.propTypes = {
 export default function Home (props) {
   const { navigate } = props.navigation
   return (
-    <View style={[styles.container, {backgroundColor: props.activeCountdown === 'timer' ? colors.blue : colors.red}]}>
+    <Image style={styles.image}
+          source={props.activeCountdown === 'timer'
+          ? require('../../images/timer_background.jpg')
+          : require('../../images/rest_background.jpg')}>
       <Score count={props.score}/>
       <Countdown formattedTime={props[props.activeCountdown]} />
       <ProgressBar style={{marginLeft: 20, marginRight: 20}} progress={props.progress} />
@@ -37,18 +40,25 @@ export default function Home (props) {
               onReset={props.onReset} />
           : <SkipRest onSkipRest={props.onSkipRest} />}
       </View>
-    </View>
+    </Image>
   )
 }
 
 const styles = StyleSheet.create({
-  container: {
+  image: {
     flex: 1,
+    resizeMode: 'cover',
+    backgroundColor: '#ccc',
+    position: 'absolute',
+    width: '100%',
+    height: '100%',
   },
   footer: {
     flex: 1,
     justifyContent: 'flex-end',
     alignItems: 'center',
     marginBottom: 15,
+    backgroundColor: 'transparent',
+
   }
 })

@@ -19,5 +19,6 @@ const styles = StyleSheet.create({
     color: colors.white,
     fontSize: fontSizes.primary,
     textAlign: 'center',
+    backgroundColor: 'transparent',
   }
 })
