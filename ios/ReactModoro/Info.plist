@@ -25,9 +25,10 @@
 		<dict>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>fbYOUR-APP-ID</string>
+				<string>fb181147029102613</string>
 			</array>
 		</dict>
+		<dict/>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
@@ -37,6 +38,7 @@
 	<string>Simple Pomodoro</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
+		<string>fb-messenger-share-api</string>
 		<string>fbapi</string>
 		<string>fb-messenger-api</string>
 		<string>fbauth2</string>
