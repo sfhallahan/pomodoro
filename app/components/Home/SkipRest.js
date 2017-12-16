@@ -20,5 +20,6 @@ const styles = StyleSheet.create({
     fontSize: fontSizes.primary,
     textAlign: 'center',
     backgroundColor: 'transparent',
+    paddingBottom: 15,
   }
 })

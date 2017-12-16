@@ -1537,7 +1537,7 @@
 					"$(SRCROOT)/node_modules/react-native/Libraries/**",
 					"$(SRCROOT)..",
 					ode_modules,
-					"eact-native-background-timerios",
+					"eact-native-background-timerios/**",
 					"~/Documents/FacebookSDK/**",
 				);
 				INFOPLIST_FILE = ReactModoro/Info.plist;
@@ -1586,7 +1586,7 @@
 					"$(SRCROOT)/node_modules/react-native/Libraries/**",
 					"$(SRCROOT)..",
 					ode_modules,
-					"eact-native-background-timerios",
+					"eact-native-background-timerios/**",
 					"~/Documents/FacebookSDK/**",
 				);
 				INFOPLIST_FILE = ReactModoro/Info.plist;
