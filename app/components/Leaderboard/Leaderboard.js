@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: colors.white,
     marginBottom: 50,
-    marginTop: 30,
+    marginTop: 50,
   },
   leaderboardHeader: {
     fontSize: 24,

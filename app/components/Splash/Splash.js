@@ -16,15 +16,16 @@ export default function Splash (props) {
     <View style={styles.container}>
       <View>
         <Image style={styles.image} source={require('../../images/ReactModoro_logo.png')} />
-        <Text style={styles.slogan}>ReactModoro</Text>
+        <Text style={styles.slogan}>Simple Pomodoro</Text>
       </View>
       <View style={styles.loginContainer}>
         <GoogleSigninButton
-          style={{height: 35, width: 185, marginBottom:10, justifyContent: 'flex-start', }}
+          size={GoogleSigninButton.Size.Wide}
+          style={{height: 48, width: 230, marginBottom:10, justifyContent: 'center', marignLeft: 100 }}
           onPress={props.onGoogleLogin}/>
         <LoginButton
-          style={{ height: 30, width: 180, marginBottom: 15,}}
-          onLoginFinished={props.onFacebookLoginFinished} />
+          style={{ height: 40, width: 225, marginBottom: 15}}
+          onLoginFinished={props.onFacebookLoginFinished}/>
         <Text style={styles.assuranceText}>
           {`Don't worry, we don't post anthing to facebook`}
         </Text>
@@ -38,7 +39,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingTop: 50,
+    paddingTop: 75,
     paddingBottom: 40,
   },
   slogan: {
@@ -54,6 +55,7 @@ const styles = StyleSheet.create({
   loginContainer: {
     paddingLeft: 30,
     paddingRight: 30,
+    marginBottom: 30,
     alignItems: 'center',
   },
   assuranceText: {
